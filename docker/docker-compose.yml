@@ -44,7 +44,7 @@ services:
     ports:
       - "9096:9096"
     environment:
-      - CONFIGSERVER_IMPORT=optional:configserver:${CONFIG_SERVER_URL}
+      - CONFIGSERVER_IMPORT=configserver:${CONFIG_SERVER_URL}
       - SPRING_CLOUD_CONFIG_FAIL_FAST=false
       - SPRING_CLOUD_CONFIG_LABEL=main
       - SPRING_PROFILES_ACTIVE=prod
