@@ -29,6 +29,8 @@ spring:
         multiplier: 1.1
 
   kafka:
+    template:
+      observation-enabled: true
     bootstrap-servers: localhost:9097
     consumer:
       group-id: ${spring.application.name}
@@ -40,6 +42,7 @@ spring:
       auto-offset-reset: earliest
       enable-auto-commit: false
     listener:
+      observation-enabled: true
       ack-mode: manual
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -58,3 +61,13 @@ kafkaprops:
   replication-factor: 1
   partitions-count: 3
   nack-sleep-duration: 100ms
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      type: b3
+    export:
+      zipkin:
+        endpoint: ${ZIPKIN_URL:http://localhost:9411/api/v2/spans}
